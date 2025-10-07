@@ -13,6 +13,6 @@ const connectDb = async () => {
         console.error("Database Conn Failed !..");
         process.exit(0);
     }
-}
+};
 
 module.exports = connectDb;
