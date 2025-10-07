@@ -7,7 +7,7 @@ const home = async (req, res) => {
 
     } catch (error) {
         console.log(error);
-        res.status(400).send({
+        res.status(500).send({
             msg: "page Not Found!"
         });
 
@@ -54,7 +54,45 @@ const register = async (req, res) => {
     }
 };
 
+
+// user LoginMenu
+const login = async (req, res) => {
+    try {
+        const {
+            email,
+            password
+        } = req.body;
+
+        const userExist = await User.findOne({
+            email
+        });
+
+        if (!userExist) {
+            return res.status(400).json({
+                msg: "Invalid Credentials..."
+            });
+        }
+
+        // const user = await bcrypt.compare(password, userExist.password);
+        const user = await userExist.comparePassword(password);
+
+        if (user) {
+            res.status(200).json({
+                msg: "Login Successfully Done..",
+                token: await userExist.generateToken(),
+                userId: userExist._id.toString(),
+            });
+        }else{
+            res.status(401).json({msg: "Invalid Email or Password.."})
+        }
+
+    } catch (error) {
+        res.status(500).json("Internal Server Error !..");
+    }
+}
+
 module.exports = {
     home,
-    register
+    register,
+    login
 };

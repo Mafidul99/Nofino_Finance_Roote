@@ -42,6 +42,12 @@ userSchema.pre('save', async function (next) {
     }
 });
 
+
+// comparePassword
+userSchema.methods.comparePassword = async function (password) {
+    return bcrypt.compare(password, this.password);
+};
+
 // jwtweb tokon
 userSchema.methods.generateToken = async function () {
     try {
