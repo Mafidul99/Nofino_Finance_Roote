@@ -3,10 +3,10 @@ const router = express.Router();
 
 const authcontrollers = require("../controllers/auth-controller");
 const singupSchema = require("../validators/auth-validator");
-const validate = required('../middlewares/validate-middlewar');
+const validate = require('../middlewares/validate-middlewar');
 
 router.route("/").get(authcontrollers.home);
 router.route("/register").post(validate(singupSchema), authcontrollers.register);
-router.route("/login").post(authcontrollers.login);
+router.route("/login").post(validate(singupSchema), authcontrollers.login);
 
 module.exports = router;
