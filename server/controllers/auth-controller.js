@@ -92,8 +92,22 @@ const login = async (req, res) => {
     }
 }
 
+// user logic
+const user = async (req, res) => {
+    try {
+        const userData = req.user;
+        // console.log(userData);
+        return res.status(200).json({userData});
+                
+    } catch (error) {
+        console.log(`error from the  user route ${error}`);
+        return res.status(500).json({msg: "Internal Server Error"});
+    }
+};
+
 module.exports = {
     home,
     register,
-    login
+    login,
+    user
 };
