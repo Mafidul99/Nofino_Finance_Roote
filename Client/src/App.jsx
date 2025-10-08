@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import AdminLogin from './pages/Auth/AdminLogin'
 import AdminRegister from './Pages/Auth/AdminRegister'
 import ForgotPassword from './Pages/Auth/ForgotPassword'
+import Login from './Pages/View/Admin/Login'
 function App() {
 
 
@@ -12,12 +13,9 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<AdminLogin />} />
+          <Route path='/login' element={<Login />} />
           <Route path='/register' element={<AdminRegister />} />
-          <Route path='/forgot-password' element={<ForgotPassword />} />
-          {/* <Route path='/about' element={<About />} />
-          <Route path='/contact' element={<Contact />} />
-          <Route path='/services' element={<Services />} />
-          <Route path='*' element={<ErrorPage />} /> */}
+          <Route path='/forgot-password' element={<ForgotPassword />} />         
         </Routes>
       </BrowserRouter>
     </>
