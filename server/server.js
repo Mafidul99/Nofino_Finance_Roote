@@ -12,10 +12,10 @@ app.use("api/form", contactRoute);
 
 app.use(errorMiddleware);
 
-const PORT = 5000;
-connectDb().then(() => {    
-    app.listen(PORT, () => {
-        console.log(`Server is runing at port: ${PORT}`);    
+// const PORT = 5000;
+connectDb().then(() => {
+    app.listen(process.env.PORT, () => {
+        console.log(`Server is runing at port: ${process.env.PORT}`);
     });
 });
 
