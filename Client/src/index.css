@@ -1,3 +1,91 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+.menu-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  gap: 0.75rem; /* gap-3 */
+  padding-left: 0.75rem; /* px-3 */
+  padding-right: 0.75rem; /* px-3 */
+  padding-top: 0.5rem; /* py-2 */
+  padding-bottom: 0.5rem; /* py-2 */
+  font-weight: 500; /* font-medium */
+  border-radius: 0.5rem; /* rounded-lg */
+  font-size: 0.875rem; /* text-theme-sm (assuming 14px) */
+}
+
+.menu-item-active {
+  background-color: transparent; /* bg-brand-50 */
+  color: #159a01; /* text-brand-500 */
+}
+
+.menu-item-inactive {
+  color: #2d3748; /* text-gray-700 */
+}
+
+.menu-item-inactive:hover,
+.menu-item-icon:hover {
+  color: #159a01 !important; /* text-gray-500 */
+}
+
+.menu-item-icon .group,
+.menu-item-icon-active {
+  color: #159a01; /* text-brand-500 */
+}
+
+
+.menu-item-icon-inactive {
+  color: #667085; /* text-gray-500 */
+}
+.menu-item-icon-inactive .group,
+.menu-item-arrow {
+  position: relative;
+}
+
+.menu-item-arrow-inactive {
+  color: #667085; /* text-gray-500 */
+}
+.menu-item-arrow-inactive .group,
+.menu-dropdown-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.menu-dropdown-item-active {
+  background-color: #9ffab9; /* bg-brand-50 */
+  color: #42fa2e; /* text-brand-500 */
+}
+.menu-dropdown-item-inactive {
+  color: #344054; /* text-gray-700 */
+}
+.menu-dropdown-item-inactive:hover {
+  color: #159a01; /* hover:bg-brand-50 */
+}
+
+.menu-dropdown-badge {
+  display: block;
+  border-radius: 9999px; /* rounded-full */
+  padding-left: 0.625rem; 
+}/* px-2.5 */
+.menu-dropdown-badge-active {
+  background-color: #e0f2fe; /* bg-brand-100 */
+}
+
+.menu-dropdown-badge-inactive.group-hover,
+.group:hover .menu-dropdown-badge-inactive {
+  background-color: #e0f2fe; /* group-hover:bg-brand-100 */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  border-radius: 9999px; /* rounded-full */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background-color: #e4e7ec; /* bg-gray-200 */
+  border-radius: 9999px; /* rounded-full */
+  border: 3px solid #f9fafb; /* border-3 border-gray-50 */    
+}

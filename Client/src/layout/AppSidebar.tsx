@@ -4,9 +4,9 @@ import { Link, useLocation } from "react-router";
 
 // Assume these icons are imported from an icon library
 import { IoGrid, IoCalendarNumber , IoPersonCircleSharp, IoList ,IoIdCard ,IoLogoBuffer } from "react-icons/io5";
-import { HiDotsHorizontal } from "react-icons/hi";
+import { HiDotsHorizontal, HiHome } from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
-
+import { BiLogOutCircle } from "react-icons/bi";
 import { useSidebar } from "../context/SidebarContext";
 
 type NavItem = {
@@ -18,33 +18,33 @@ type NavItem = {
 
 const navItems: NavItem[] = [
   {
-    icon: <IoGrid size={25}/>,
+    icon: <IoGrid size={20}/>,
     name: "Dashboard",
     path: "/dashboard"
   },
   {
-    icon: <IoCalendarNumber   size={25}/>,
+    icon: <IoCalendarNumber size={20}/>,
     name: "Calendar",
     path: "/calendar",
   },
   {
-    icon: <IoPersonCircleSharp size={25}/>,
+    icon: <IoPersonCircleSharp size={20}/>,
     name: "User Profile",
     path: "/profile",
   },
   {
     name: "Forms",
-    icon: <IoList  size={25}/>,
+    icon: <IoList size={20}/>,
     subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
   },
   {
     name: "Tables",
-    icon: <IoIdCard  size={25}/>,
+    icon: <IoIdCard  size={20}/>,
     subItems: [{ name: "Basic Tables", path: "/basic-tables", pro: false }],
   },
   {
     name: "Pages",
-    icon: <IoLogoBuffer  size={25}/>,
+    icon: <IoLogoBuffer size={20}/>,
     subItems: [
       { name: "Blank Page", path: "/blank", pro: false },
       { name: "404 Error", path: "/error-404", pro: false },
@@ -54,7 +54,7 @@ const navItems: NavItem[] = [
 
 const othersItems: NavItem[] = [
   {
-    icon: <IoLogoBuffer  size={25}/>,
+    icon: <IoLogoBuffer size={20}/>,
     name: "Charts",
     subItems: [
       { name: "Line Chart", path: "/line-chart", pro: false },
@@ -62,7 +62,7 @@ const othersItems: NavItem[] = [
     ],
   },
   {
-    icon: <IoLogoBuffer  size={25}/>,
+    icon: <IoLogoBuffer size={20}/>,
     name: "UI Elements",
     subItems: [
       { name: "Alerts", path: "/alerts", pro: false },
@@ -74,7 +74,7 @@ const othersItems: NavItem[] = [
     ],
   },
   {
-    icon: <IoLogoBuffer size={25} />,
+    icon: <IoLogoBuffer size={20} />,
     name: "Authentication",
     subItems: [
       { name: "Sign In", path: "/signin", pro: false },
@@ -160,16 +160,16 @@ const AppSidebar = () => {
               onClick={() => handleSubmenuToggle(index, menuType)}
               className={`menu-item group ${
                 openSubmenu?.type === menuType && openSubmenu?.index === index
-                  ? "menu-item-active"
-                  : "menu-item-inactive"
+                  ? "menu-item-active inline-block"
+                  : "menu-item-inactive inline-block"
               } cursor-pointer ${
                 !isExpanded && !isHovered
-                  ? "lg:justify-center"
-                  : "lg:justify-start"
+                  ? "justify-center"
+                  : "justify-start"
               }`}
             >
               <span
-                className={`menu-item-icon-size flex  ${
+                className={`menu-item-icon-size  ${
                   openSubmenu?.type === menuType && openSubmenu?.index === index
                     ? "menu-item-icon-active"
                     : "menu-item-icon-inactive"
@@ -178,14 +178,14 @@ const AppSidebar = () => {
                 {nav.icon}
               </span>
               {(isExpanded || isHovered || isMobileOpen) && (
-                <span className="menu-item-text flex">{nav.name}</span>
+                <span className="flex menu-item-text">{nav.name}</span>
               )}
               {(isExpanded || isHovered || isMobileOpen) && (
                 <IoIosArrowDown 
-                  className={`inline ml-auto w-5 h-5 transition-transform duration-200 ${
+                  className={`inline-block ml-auto w-4 h-4 justify-items-end transition-transform duration-200 ${
                     openSubmenu?.type === menuType &&
                     openSubmenu?.index === index
-                      ? "rotate-180 text-brand-500 inline"
+                      ? "rotate-180 text-brand-500 inline-block"
                       : ""
                   }`}
                 />
@@ -275,8 +275,10 @@ const AppSidebar = () => {
   );
 
   return (
+    <>
     <aside
-      className={`fixed mt-16 flex flex-col shadow-sm lg:mt-0 top-0 px-5 left-0 bg-green-50 text-gray-900 h-screen transition-all duration-300 ease-in-out z-50 border-r border-gray-200 
+      className={`fixed mt-16 flex flex-col shadow-sm lg:mt-0 top-0 px-5 left-0 bg-[#E0FFFF] text-gray-900 h-screen transition-all duration-300 ease-in-out
+         z-50 border-r-[1px] border-r-gray-300
         ${
           isExpanded || isMobileOpen
             ? "w-[290px]"
@@ -291,7 +293,7 @@ const AppSidebar = () => {
     >
       <div
         className={`py-8 flex ${
-          !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
+          !isExpanded && !isHovered ? "justify-center" : "justify-start"
         }`}
       >
         <Link to="/">
@@ -329,7 +331,7 @@ const AppSidebar = () => {
               <h2
                 className={`mb-4 text-xs uppercase flex leading-[20px] text-gray-400 ${
                   !isExpanded && !isHovered
-                    ? "lg:justify-center"
+                    ? "justify-center items-center"
                     : "justify-start"
                 }`}
               >
@@ -357,11 +359,15 @@ const AppSidebar = () => {
               </h2>
               {renderMenuItems(othersItems, "others")}
             </div> */}
+
+
           </div>
         </nav>
         
       </div>
+      
     </aside>
+    </>
   );
 };
 

@@ -31,7 +31,7 @@ export default function UserDropdown() {
           <img src="../../../public/logo/Finance13.png" alt="User" />
         </span>
 
-        <span className="block mr-1 text-gray-800 font-medium text-theme-sm">
+        <span className="block mr-1 font-medium text-gray-800 text-theme-sm">
           {user?.username}
         </span>
         <svg
@@ -57,7 +57,7 @@ export default function UserDropdown() {
       <Dropdown
         isOpen={isOpen}
         onClose={closeDropdown}
-        className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-gray-200 bg-white p-3 shadow-theme-lg"
+        className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded border border-gray-300 bg-white p-3 shadow-md"
       >
         <div>
           <span className="block font-medium text-gray-800 text-theme-sm ">
