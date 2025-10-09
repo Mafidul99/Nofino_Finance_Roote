@@ -7,6 +7,9 @@ const contactRoute = require("./router/contact-router");
 const connectDb = require("./utils/db");
 const errorMiddleware = require('./middlewares/error-middlewar');
 
+// lst's import admin router
+const adminRoute = require("./router/Admin-router");
+
 app.use(express.json());
 app.use(cors());
 const corsOptions = {
@@ -15,9 +18,17 @@ const corsOptions = {
     credentials: true,
     optionsSuccessStatus: 200 
 }
+
+//lest's usere cors options
 app.use(cors(corsOptions));
+
+//lset's use routes
 app.use("/api/auth", authRoute);
 app.use("/api/form", contactRoute);
+
+
+// lst's import admin router
+app.use("/api/admin", adminRoute);
 
 app.use(errorMiddleware);
 

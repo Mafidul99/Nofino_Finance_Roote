@@ -8,7 +8,7 @@ const home = async (req, res) => {
     } catch (error) {
         console.log(error);
         res.status(500).send({
-            msg: "page Not Found!"
+            message: "page Not Found!"
         });
 
     }
@@ -29,7 +29,7 @@ const register = async (req, res) => {
 
         if (userExist) {
             return res.status(400).json({
-                msg: "Email alredy Exists !..."
+                message: "Email alredy Exists !..."
             })
         }
 
@@ -45,7 +45,7 @@ const register = async (req, res) => {
         });
 
         res.status(201).json({
-            msg: "Registration Successfully Done..",
+            message: "Registration Successfully Done..",
             token: await userCreated.generateToken(),
             userId: userCreated._id.toString(),
         });
@@ -69,7 +69,7 @@ const login = async (req, res) => {
 
         if (!userExist) {
             return res.status(400).json({
-                msg: "Invalid Credentials..."
+                message: "Invalid Credentials..."
             });
         }
 
@@ -78,7 +78,7 @@ const login = async (req, res) => {
 
         if (user) {
             res.status(200).json({
-                msg: "Login Successfully Done..",
+                message: "Login Successfully Done..",
                 token: await userExist.generateToken(),
                 userId: userExist._id.toString(),
             });
@@ -92,6 +92,8 @@ const login = async (req, res) => {
     }
 }
 
+
+
 // user logic
 const user = async (req, res) => {
     try {
@@ -101,7 +103,7 @@ const user = async (req, res) => {
                 
     } catch (error) {
         console.log(`error from the  user route ${error}`);
-        return res.status(500).json({msg: "Internal Server Error"});
+        return res.status(500).json({message: "Internal Server Error"});
     }
 };
 

@@ -1,11 +1,10 @@
-const validate = (Schema) => async (req, res, next) => {
+const validate = (schema) => async (req, res, next) => {
     try {
-        const parseBody = await Schema.parseAsync(req.body);
+        const parseBody = await schema.parseAsync(req.body);
         req.body = parseBody;
         next();
 
     } catch (err) {
-
         const status = 422;
         const message = "Fill the input Properly";
         const extraDetails = err.errors[0].message;

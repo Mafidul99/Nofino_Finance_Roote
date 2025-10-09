@@ -15,7 +15,7 @@
   padding-bottom: 0.5rem; /* py-2 */
   font-weight: 500; /* font-medium */
   border-radius: 0.5rem; /* rounded-lg */
-  font-size: 0.875rem; /* text-theme-sm (assuming 14px) */
+  font-size: 1rem; /* text-theme-sm (assuming 14px) */
 }
 
 .menu-item-active {
@@ -55,9 +55,8 @@
   display: flex;
   align-items: center;
 }
-.menu-dropdown-item-active {
-  background-color: #9ffab9; /* bg-brand-50 */
-  color: #42fa2e; /* text-brand-500 */
+.menu-dropdown-item-active { 
+  color: #fa2e2e; /* text-brand-500 */
 }
 .menu-dropdown-item-inactive {
   color: #344054; /* text-gray-700 */

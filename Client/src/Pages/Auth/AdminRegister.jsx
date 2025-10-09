@@ -2,9 +2,12 @@ import React, { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../store/auth';
+import { toast } from 'react-toastify';
 
 const AdminRegister = () => {
     const navigate = useNavigate();
+    const {storeTokenInLs} = useAuth();
+
     const [user, setUser] = useState({
         username: "", phone: "", email: "", password: ""
     });
@@ -17,9 +20,7 @@ const AdminRegister = () => {
         });
     };
 
-    const URL = `${import.meta.env.VITE_API_URL}/api/auth/register`;
-
-    const { storeTokenInLs } = useAuth();
+    const URL = `${import.meta.env.VITE_API_URL}/api/auth/register`;    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,21 +34,24 @@ const AdminRegister = () => {
                 body: JSON.stringify(user),
             });
             // console.log(response);
-            if (response.ok) {
-                const data = await response.json();
+
+            const res_data = await response.json();
+            if (response.ok) {                
                 // storetoken(data.token);
-                storeTokenInLs(data.token);
-                alert("Registration successful:", data);
+                storeTokenInLs(res_data.token);
+                toast.success("Registration successful Done", res_data.extraDetails);
                 setUser({ username: "", phone: "", email: "", password: "" });
                 navigate("/");
             } else {
-                alert("Registration failed:", response.statusText);
+                toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
                 navigate("/register");
             }
         } catch (error) {
             console.error("register:", error);
         }
     };
+
+    
     return (
         <div className="bg-[#ecf0f5] h-screen">
             <div className="flex min-h-[100vh] flex-col justify-center py-12 sm:px-6 lg:px-8">

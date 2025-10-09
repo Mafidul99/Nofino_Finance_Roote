@@ -3,11 +3,11 @@ import { Link, useLocation } from "react-router";
 
 
 // Assume these icons are imported from an icon library
-import { IoGrid, IoCalendarNumber , IoPersonCircleSharp, IoList ,IoIdCard ,IoLogoBuffer } from "react-icons/io5";
-import { HiDotsHorizontal, HiHome } from "react-icons/hi";
+import { IoGrid, IoCalendarNumber , IoPersonCircleSharp, IoIdCard ,IoLogoBuffer } from "react-icons/io5";
+import { HiDotsHorizontal} from "react-icons/hi";
 import { IoIosArrowDown } from "react-icons/io";
-import { BiLogOutCircle } from "react-icons/bi";
 import { useSidebar } from "../context/SidebarContext";
+import { FaUsers } from "react-icons/fa6";
 
 type NavItem = {
   name: string;
@@ -20,22 +20,26 @@ const navItems: NavItem[] = [
   {
     icon: <IoGrid size={20}/>,
     name: "Dashboard",
-    path: "/dashboard"
+    path: "/admin/dashboard"
   },
   {
     icon: <IoCalendarNumber size={20}/>,
     name: "Calendar",
-    path: "/calendar",
+    path: "/admin/calendar",
   },
   {
     icon: <IoPersonCircleSharp size={20}/>,
     name: "User Profile",
-    path: "/profile",
+    path: "/admin/profile",
   },
   {
-    name: "Forms",
-    icon: <IoList size={20}/>,
-    subItems: [{ name: "Form Elements", path: "/form-elements", pro: false }],
+    name: "Ueser Management",
+    icon: <FaUsers size={20}/>,
+    subItems: [
+      { name: "User View", path: "/admin/user-view", pro: false },
+      { name: "User Edit", path: "/admin/user-edit", pro: false },
+      { name: "User Add", path: "/admin/user-add", pro: false },
+    ],
   },
   {
     name: "Tables",

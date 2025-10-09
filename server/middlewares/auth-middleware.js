@@ -5,7 +5,7 @@ const authMiddleware = async (req, res, next) => {
     const token = req.header("Authorization");
     if (!token) {
         return res.status(401).json({
-            msg: "Unauthorized access Token"
+            message: "Unauthorized access Token"
         });
     }
 
@@ -21,7 +21,7 @@ const authMiddleware = async (req, res, next) => {
         next();
     } catch (error) {
         return res.status(401).json({
-            message: "Unauthorized Access Token Verify"
+            message: "Unauthorized Invalid Token"
         })
     }
 };

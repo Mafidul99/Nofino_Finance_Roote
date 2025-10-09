@@ -1,7 +1,7 @@
 /* eslint-disable react-refresh/only-export-components */
 
 import { createContext, useContext, useEffect, useState } from "react";
-import { Logout } from "../Pages/Auth/Logout";
+
 
 /// eslint-disable-next-line react-refresh/only-export-components
 export const AuthContext = createContext();
@@ -10,10 +10,13 @@ export const AuthProvider = ({ children }) => {
     const [token, setToken] = useState(localStorage.getItem("token"));
     const [user, setUser] = useState("");
 
+    const AuthorizationToken = `Bearer ${token}`;
+    // storing token in local storage
+
     const storeTokenInLs = (serverToken) => {
+        setToken(serverToken);
         return localStorage.setItem("token", serverToken);
     };
-
 
     // tracking your Logout
     const LogoutUser = () => {
@@ -28,7 +31,7 @@ export const AuthProvider = ({ children }) => {
             const response = await fetch(URL, {
                 method: "GET",
                 headers: {
-                    Authorization: `Bearer ${token}`,
+                    Authorization: AuthorizationToken
                 },
             });
             if(response.ok){
@@ -50,16 +53,16 @@ export const AuthProvider = ({ children }) => {
 
 
     return (
-        <AuthContext.Provider value={{ storeTokenInLs, LogoutUser, token, user }}>
+        <AuthContext.Provider value={{ storeTokenInLs, LogoutUser, token, user, AuthorizationToken }}>
             {children}
         </AuthContext.Provider>
     );
 };
 
 export const useAuth = () => {
-    const authContextvalue = useContext(AuthContext);
-    if (!authContextvalue) {
+    const authContextValue = useContext(AuthContext);
+    if (!authContextValue) {
         throw new Error("useAuth must be used within an AuthProvider");
     }
-    return authContextvalue;
+    return authContextValue;
 };

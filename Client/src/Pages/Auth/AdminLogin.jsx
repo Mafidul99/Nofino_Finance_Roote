@@ -3,9 +3,12 @@ import logoPng from '../../assets/logo/Finance13.png';
 import { NavLink } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../store/auth';
+import { toast } from 'react-toastify';
 
 const AdminLogin = () => {
     const navigate = useNavigate();
+    const {storeTokenInLs} = useAuth();
+
     const [user, setUser] = useState({
         email: "",
         password: ""
@@ -19,9 +22,7 @@ const AdminLogin = () => {
         });
     };
 
-    const URL = `${import.meta.env.VITE_API_URL}/api/auth/login`;
-
-    const { storeTokenInLs } = useAuth();
+    const URL = `${import.meta.env.VITE_API_URL}/api/auth/login`;    
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -33,15 +34,18 @@ const AdminLogin = () => {
                 },
                 body: JSON.stringify(user),
             });
+
+            
+            const res_data = await response.json();
             if (response.ok) {
-                const data = await response.json();
                 // storetoken(data.token);
-                storeTokenInLs(data.token);
-                alert("Login successful:", data);
+                storeTokenInLs(res_data.token);
+                toast.success("Login successful");
                 setUser({ email: "", password: "" });
-                navigate("/dashboard");
+                navigate("/admin/dashboard");
             } else {
-                alert("Login failed:", response.statusText);
+                toast.error(res_data.extraDetails ? res_data.extraDetails : res_data.message);
+                // console.log("Login failed & Invalid Credentials:");                
                 navigate("/");
             }
         } catch (error) {
